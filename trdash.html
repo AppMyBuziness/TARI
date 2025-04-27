@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Books</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
         body {
+        
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
-            padding-left: 100px;
+            padding-left: 100px; /* Add padding to the left for the navbar */
         }
+
         .navbar {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             background-color: #2b043d;
-            padding: 30px;
-            position: fixed;
+            padding: 15px;
+            position: fixed; /* Fixed position */
             top: 0;
-            left: 0;
+            left: 0; /* Align to the left */
             z-index: 1000;
             width: 100px;
             height: 100vh;
         }
+
         .nav-item {
-            color: rgb(72, 12, 87);
+            color: white;
             text-decoration: none;
             text-align: center;
             padding: 10px;
@@ -34,52 +40,108 @@
             transition: color 0.3s;
             width: 100%;
         }
+
         .nav-item:hover {
             color: #ccc;
         }
-        .container {
-        color:rgb(72, 12, 87);
+
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px; /* Adjust margin for spacing */
+            margin-top: 100px; /* Add margin-top to avoid overlap with the navbar */
+        }
+
+        .profile {
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            padding-left: 80px;
             width: 100%;
-            max-width: 200px;
-            margin-top: 20px;
-            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
         }
-            .container2 {
-       
-            background-color: rgb(205, 186, 221);
+
+        .profile img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .action-button {
+            background-color: #4a0a50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            max-width: 150px;
+        }
+
+        .action-button:hover {
+            background-color: #965888;
+        }
+
+        .chat-container {
+            background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            padding-left: 80px;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px; /* Set a max width for the chat container */
             margin-top: 20px;
-            align-items: center; 
-            flex:1 ;
-            margin:10px ;
         }
-        .header {
-            font-size: 24px;
+
+        .chat-header {
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
-        
-        .item-container {
-            margin-bottom: 20px;
+
+        .message-display {
+            height: 300px; /* Set a fixed height for the message area */
+            overflow-y: auto; /* Allow scrolling */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .message-input {
+            display: flex;
+        }
+
+        .message-input input {
+            flex: 1;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            margin-right: 5px;
         }
-        .item-container2 {
-            margin-bottom: 20px;
+
+        .message-input button {
             padding: 10px;
-            border: 1px solid #ccc;
+            background-color: #007bff;
+            color: white;
+            border: none;
             border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .message-input button:hover {
+            background-color: #0056b3;
         }
         .slideshow-container {
     position: relative;
@@ -130,10 +192,30 @@
 }
     </style>
 </head>
+
 <body>
-    
-    <div class="tenor-gif-embed" data-postid="1476790857844143089" data-share-method="host" data-aspect-ratio="1.20219" data-width="10cm" height="5cm"><a href="https://tenor.com/view/purple-flower-tree-petals-falling-gif-1476790857844143089">Purple Flower Tree Petals Falling Sticker</a>from <a href="https://tenor.com/search/purple+flower+tree+petals+falling-stickers">Purple Flower Tree Petals Falling Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>   
+    <div class="navbar">
+        <a href="dashboard.html" class="nav-item" title="Dashboard">
+            <i class="fas fa-tachometer-alt"></i>
+        </a>
+        <a href="books.html" class="nav-item" title="Books">
+            <i class="fas fa-book"></i>
+        </a>
+        <a href="personal_diary.html" class="nav-item" title="Personal Diary">
+            <i class="fas fa-feather-alt"></i> <!-- Icon for diary -->
+        </a>
+        <a href="affirmations.html" class="nav-item" title="Affirmations">
+            <i class="fas fa-comments"></i> <!-- Icon for affirmations -->
+        </a>
+        <a href="chat.html" class="nav-item" title="Chat">
+            <i class="fas fa-comment-dots"></i> <!-- Icon for chat -->
+        </a>
+    </div>
+      
+    <div class="dashboard-container">
         <div class="slideshow-container">
+        <div class="profile">
+            <div class="tenor-gif-embed" data-postid="13194761751128484785" data-share-method="host" data-aspect-ratio="0.835" data-width="3cm" height="3cm"><a href="https://tenor.com/view/yellow-flowers-plants-holding-smile-happy-gif-13194761751128484785">Yellow Flowers Plants Meme</a>from <a href="https://tenor.com/search/yellow+flowers-memes">Yellow Flowers Memes</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
             <div class="slide fade">
                 <div class="text">"Believe in yourself and all that you are."</div>
             </div>
@@ -165,52 +247,123 @@
             <div class="slide fade">
                 <div class="text">"Dream it. Wish it. Do it."</div>
             </div>
-            <!-- Continue adding until you have 30 affirmations -->
-        
-        <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
-        <div class="next" onclick="plusSlides(1)">&#10095;</div>
-    </div>
-</div>
-
-    <div class="container-wrapper">
-    <div class="container2">
-    <div class="container">
-        <a href="personal_diary.html" class="nav-item" title="Personal Diary">
-            <i class="fas fa-feather-alt"></i> <!-- Icon for diary -->
-        </a>
-        <p>this is a link to diary page</p>
-    </div>
-
-    <div class="container">
-        <a href="affirmations.html" class="nav-item" title="Affirmations">
-            <i class="fas fa-comments"></i> <!-- Icon for affirmations -->
-        </a>
-        <p>this is a link to affirmations page</p>
-    </div>
-    <div class="container">
-        <a href="chat.html" class="nav-item" title="Chat">
-            <i class="fas fa-comment-dots"></i> <!-- Icon for chat -->
-        </a>
-        <p>this is a link to chat page</p>
-    </div>
-    </div>
-    
-        <div style="background-color: #2b043d;" class="container2">
-            <div class="container">
-                <h2 id="displayUsername">Username</h2>
-                <p id="displayEmail">Email: user@example.com</p>
-                <p id="displayPronoun">Pronoun: He/Him</p>
-                <div class="tenor-gif-embed" data-postid="19642352" data-share-method="host" data-aspect-ratio="1.33333" data-width="3cm" height="3cm">
+            <h2 id="displayUsername">Username</h2>
+            <p id="displayEmail">Email: user@example.com</p>
+            <p id="displayPronoun">Pronoun: He/Him</p>
+            <div class="totals">
+               
+                <p> <div class="tenor-gif-embed" data-postid="19642352" data-share-method="host" data-aspect-ratio="1.33333" data-width="3cm" height="3cm">
                     <a href="https://tenor.com/view/gold-coin-gif-19642352">Gold Coin GIF</a> from <a href="https://tenor.com/search/gold-gifs">Gold GIFs</a>
-                
                 </div>
-                <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-                <p>coins <span id="totalcoins">0</span></p>
+                <script type="text/javascript" async src="https://tenor.com/embed.js"></script>coins<span id="totalcoins">0</span></p>
+                
+            </div>
+        </div>
+    
+           
+
+        
+
+        <div class="chat-container">
+            <div class="tenor-gif-embed" data-postid="17301801" data-share-method="host" data-aspect-ratio="0.665625" data-width="1cm" height="1cm"><a href="https://tenor.com/view/neked-hoztam-rose-flower-spinning-white-gif-17301801">Neked Hoztam Rose Sticker</a>from <a href="https://tenor.com/search/neked+hoztam-stickers">Neked Hoztam Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+            
+            <div class="chat-header">groupchat</div>
+            <div class="message-display" id="messageDisplay">
+                <!-- Messages will be displayed here -->
+            </div>
+            <div class="message-input">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
-       
+
     <script>
+        const maxMessages = 100; // Maximum number of messages
+        const messageExpiryDays = 3; // Message expiry in days
+    
+        // Load messages from localStorage on page load
+        window.onload = function() {
+            const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+            const currentTime = new Date().getTime();
+            
+            // Filter out expired messages
+            const validMessages = messages.filter(msg => (currentTime - msg.timestamp) < (messageExpiryDays * 24 * 60 * 60 * 1000));
+            localStorage.setItem('chatMessages', JSON.stringify(validMessages)); // Update localStorage
+            
+            validMessages.forEach(msg => displayMessage(msg.username, msg.text, msg.timestamp));
+            
+            // Load user data
+            document.getElementById('displayUsername').textContent = localStorage.getItem('username') || 'Username';
+            document.getElementById('displayEmail').textContent = 'Email: ' + (localStorage.getItem('email') || 'user@example.com');
+            document.getElementById('displayPronoun').textContent = 'Pronoun: ' + (localStorage.getItem('pronoun') || 'He/Him');
+        };
+    
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value;
+            const username = localStorage.getItem('username') || 'User';
+    
+            if (message) {
+                const newMessage = { username: username, text: message, timestamp: new Date().getTime() };
+                const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+    
+                // Add new message and maintain limit
+                messages.push(newMessage);
+                if (messages.length > maxMessages) {
+                    messages.shift(); // Remove the oldest message
+                }
+    
+                localStorage.setItem('chatMessages', JSON.stringify(messages));
+                displayMessage(username, message, newMessage.timestamp);
+                input.value = ''; // Clear the input
+                document.getElementById('messageDisplay').scrollTop = document.getElementById('messageDisplay').scrollHeight; // Scroll to the bottom
+            }
+        }
+    
+        function displayMessage(username, message, timestamp) {
+            const display = document.getElementById('messageDisplay');
+            const messageElement = document.createElement('div');
+            
+            // Create a span for the username
+            const usernameElement = document.createElement('span');
+            usernameElement.textContent = username + ': ';
+            
+            // Create a span for the message text
+            const textElement = document.createElement('span');
+            textElement.textContent = message;
+    
+            // Format the timestamp
+            const date = new Date(timestamp);
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
+            const formattedDate = date.toLocaleDateString(undefined, options);
+    
+            // Create a span for the timestamp
+            const timestampElement = document.createElement('span');
+            timestampElement.textContent = ' (' + formattedDate + ')';
+            timestampElement.style.fontSize = 'small';
+            timestampElement.style.color = 'gray';
+    
+            // Apply styles if the username is "Ms Magna"
+            if (username === "Ms Magna") {
+                usernameElement.style.fontWeight = 'bold';
+                usernameElement.style.color = 'purple';
+            }
+    
+            // Append the username, message text, and timestamp
+            messageElement.appendChild(usernameElement);
+            messageElement.appendChild(textElement); // Append the message text
+            messageElement.appendChild(timestampElement); // Append the timestamp
+            display.appendChild(messageElement);
+        }
+    
+        function showEditProfilePopup() {
+            alert('Edit profile functionality not implemented yet.');
+        }
+    
+        function openPublishStoryPopup() {
+            alert('Chat functionality not implemented yet.');
+        }
         let slideIndex = 0;
         showSlides();
     
