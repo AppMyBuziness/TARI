@@ -3,16 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affirmations</title>
+    <title>Send Message</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
-            padding-left: 100px; /* Add padding to the left for the navbar */
+            padding: 20px;
         }
 
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .message-input {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .message-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .message-input button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .message-input button:hover {
+            background-color: #0056b3;
+        }
         .navbar {
             display: flex;
             flex-direction: column;
@@ -20,9 +54,9 @@
             align-items: center;
             background-color: #2b043d;
             padding: 15px;
-            position: fixed;
+            position: fixed; /* Fixed position */
             top: 0;
-            left: 0;
+            left: 0; /* Align to the left */
             z-index: 1000;
             width: 100px;
             height: 100vh;
@@ -41,33 +75,9 @@
         .nav-item:hover {
             color: #ccc;
         }
-
-        .affirmation-container {
-            padding: 20px;
-            margin-top: 100px; /* Avoid overlap with navbar */
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .affirmation-display {
-            max-height: 400px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px;
-        }
-
-        .affirmation-item {
-            margin-bottom: 5px;
-        }
     </style>
 </head>
 <body>
-
     <div class="navbar">
         <a href="trdash.html" class="nav-item" title="Dashboard">
             <i class="fas fa-tachometer-alt"></i>
@@ -75,7 +85,7 @@
         <a href="books.html" class="nav-item" title="Books">
             <i class="fas fa-book"></i>
         </a>
-        <a href="index.html" class="nav-item" title="Personal Diary">
+        <a href="tdiary.html" class="nav-item" title="Personal Diary">
             <i class="fas fa-feather-alt"></i>
         </a>
         <a href="affirm.html" class="nav-item" title="Affirmations">
@@ -85,33 +95,33 @@
             <i class="fas fa-comment-dots"></i>
         </a>
     </div>
-    <div class="affirmation-container">
-        <div class="tenor-gif-embed" data-postid="16486749" data-share-method="host" data-aspect-ratio="1" data-width="4cm" height="4cm"><a href="https://tenor.com/view/missallthingsawesome-awesomelystudio-pink-pink-queen-queen-of-pink-gif-16486749">Missallthingsawesome Awesomelystudio GIF</a>from <a href="https://tenor.com/search/missallthingsawesome-gifs">Missallthingsawesome GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-        <h2>Tari's Affirmations</h2>
-        <div class="affirmation-display" id="affirmationDisplay">
-            <!-- Affirmations will be displayed here -->
+    <div class="container">
+        <h2>Send a Message</h2>
+        <div class="message-input">
+            <input type="text" id="userMessageInput" placeholder="Type your message...">
+            <button onclick="sendUserMessage()">Send</button>
         </div>
     </div>
 
     <script>
-        // Load affirmations from localStorage on page load
-        window.onload = function() {
-            loadAffirmations();
-        };
+        function sendUserMessage() {
+            const input = document.getElementById('userMessageInput');
+            const message = input.value;
 
-        function loadAffirmations() {
-            const affirmations = JSON.parse(localStorage.getItem('affirmations')) || [];
-            const affirmationDisplay = document.getElementById('affirmationDisplay');
-            affirmationDisplay.innerHTML = '';
+            if (message) {
+                const username = localStorage.getItem('username') || 'User';
+                const newMessage = { username: username, text: message, timestamp: new Date().getTime() };
 
-            // Display all affirmations
-            affirmations.forEach(affirmation => {
-                const dateTime = new Date(affirmation.timestamp).toLocaleString();
-                const affirmationElement = document.createElement('div');
-                affirmationElement.className = 'affirmation-item';
-                affirmationElement.textContent = `${dateTime}: ${affirmation.text}`;
-                affirmationDisplay.appendChild(affirmationElement);
-            });
+                // Store message in localStorage
+                const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+                messages.push(newMessage);
+                localStorage.setItem('chatMessages', JSON.stringify(messages));
+
+                alert("Message sent!");
+                input.value = ''; // Clear the input
+            } else {
+                alert("Message cannot be empty!");
+            }
         }
     </script>
 </body>
