@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Message</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .message-input {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .message-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .message-input button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .message-input button:hover {
+            background-color: #0056b3;
+        }
+        .navbar {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #2b043d;
+            padding: 15px;
+            position: fixed; /* Fixed position */
+            top: 0;
+            left: 0; /* Align to the left */
+            z-index: 1000;
+            width: 100px;
+            height: 100vh;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+            width: 100%;
+        }
+
+        .nav-item:hover {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="trdash.html" class="nav-item" title="Dashboard">
+            <i class="fas fa-tachometer-alt"></i>
+        </a>
+        <a href="books.html" class="nav-item" title="Books">
+            <i class="fas fa-book"></i>
+        </a>
+        <a href="tdiary.html" class="nav-item" title="Personal Diary">
+            <i class="fas fa-feather-alt"></i>
+        </a>
+        <a href="affirm.html" class="nav-item" title="Affirmations">
+            <i class="fas fa-comments"></i>
+        </a>
+        <a href="sendMessage.html" class="nav-item" title="Chat">
+            <i class="fas fa-comment-dots"></i>
+        </a>
+    </div>
+    <div class="container">
+        <h2>Send a Message</h2>
+        <div class="message-input">
+            <input type="text" id="userMessageInput" placeholder="Type your message...">
+            <button onclick="sendUserMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendUserMessage() {
+            const input = document.getElementById('userMessageInput');
+            const message = input.value;
+
+            if (message) {
+                const username = localStorage.getItem('username') || 'User';
+                const newMessage = { username: username, text: message, timestamp: new Date().getTime() };
+
+                // Store message in localStorage
+                const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+                messages.push(newMessage);
+                localStorage.setItem('chatMessages', JSON.stringify(messages));
+
+                alert("Message sent!");
+                input.value = ''; // Clear the input
+            } else {
+                alert("Message cannot be empty!");
+            }
+        }
+    </script>
+</body>
+</html>
